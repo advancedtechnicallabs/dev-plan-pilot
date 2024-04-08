@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_04_08_171449) do
+ActiveRecord::Schema[7.0].define(version: 2024_04_08_171541) do
+  create_table "issues", force: :cascade do |t|
+    t.text "description"
+    t.integer "task_id"
+    t.string "status"
+    t.text "resolution_explanation"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "memberships", force: :cascade do |t|
     t.integer "project_id"
     t.integer "user_id"

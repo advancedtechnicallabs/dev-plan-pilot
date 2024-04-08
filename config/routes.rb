@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :issues
   resources :user_stories
   resources :milestones
   resources :projects
