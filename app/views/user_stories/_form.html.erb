@@ -1,0 +1,42 @@
+<%= form_with(model: user_story) do |form| %>
+  <% if user_story.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(user_story.errors.count, "error") %> prohibited this user_story from being saved:</h2>
+
+      <ul>
+        <% user_story.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :milestone_id, style: "display: block" %>
+    <%= form.number_field :milestone_id %>
+  </div>
+
+  <div>
+    <%= form.label :descriptive_name, style: "display: block" %>
+    <%= form.text_area :descriptive_name %>
+  </div>
+
+  <div>
+    <%= form.label :membership_id, style: "display: block" %>
+    <%= form.number_field :membership_id %>
+  </div>
+
+  <div>
+    <%= form.label :project_id, style: "display: block" %>
+    <%= form.number_field :project_id %>
+  </div>
+
+  <div>
+    <%= form.label :estimated_completion_date, style: "display: block" %>
+    <%= form.date_field :estimated_completion_date %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
