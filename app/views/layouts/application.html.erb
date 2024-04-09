@@ -1,18 +1,90 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Rails Template</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+    <title>Project Organizer</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <%= csrf_meta_tags %>
+        <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
+        <!-- Connect Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+
+        <!-- Connect Bootstrap JavaScript and its dependencies -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+
+        <!-- Connect Font Awesome -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"></script>
+
+        <!-- JQuery related items -->
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+        <script>
+
+        //Let's show the about box when we first start up.  
+        //Let's only show the "Log In" box when the user clicks on the Log In link.
+
+            $(document).ready(function(){
+                $("#about").click(function(){
+                    $("#aboutModal").modal('show');
+                });
+
+               //$("#login").click(function(){
+               //     $("#loginModal").modal('show');
+               // });
+
+            });
+
+        </script>
+
+        <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+        <%= javascript_importmap_tags %>
   </head>
 
   <body>
+
+    <!-- Let's put our navbar here. First, we should check to see if anybodys logged in... -->
+    <nav class="navbar navbar-dark bg-info">
+        <div class="container-fluid">
+            <a class="navbar-brand text-secondary" id="about" data-bs-toggle="modal" data-bs-target="#aboutModal">About</a>
+
+                <% if user_signed_in? %>
+
+                    <h1>USER SIGNED IN</h1>
+
+                <% else %>
+  
+                    <!--<a class="navbar-brand text-white my-2 my-lg-0" id="login" data-bs-toggle="modal" data-bs-target="#loginModal">Log In</a> -->
+                    <%= link_to 'Log in', new_user_session_path, {:class => "navbar-brand text-white my-2 my-lg-0"} %>
+
+                <% end %>
+
+        </div>
+
+    </nav>
+
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
+
+    <!--<% if user_signed_in? %>
+        <h1>Welcome, <%= current_user.email %></h1>
+        <%= link_to 'Sign out', destroy_user_session_path, data: { turbo_method: :delete } %>
+    <% else %>
+        <h1> HOME </h1>
+        <%= link_to 'Sign in', new_user_session_path %>
+    <% end %> -->
+
+
+    <!-- End of our navbar block. -->
+
+    <!-- Here's where our "About" box is partially rendered -->
+        <%= render partial: "misc/about" %>
+    <!-- End of render the about box -->
+
+
+    <!-- Here's where our "Log In" box is partially rendered -->
+      <%= render partial: "misc/login" %>
+    <!-- End of render the login box -->
 
     <%= yield %>
   </body>
