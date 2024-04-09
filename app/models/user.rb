@@ -16,6 +16,7 @@
 #  skillset               :text
 #  title                  :string
 #  username               :string
+#  whereis                :string           default("project_list")
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
@@ -29,4 +30,6 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  has_many :memberships
 end

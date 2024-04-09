@@ -65,11 +65,13 @@
                         </button>
 
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Profile</a></li>
                                 <li><%= link_to 'Log out', destroy_user_session_path, {:class => "dropdown-item text-danger my-2 my-lg-0"} %></li>
-                                <li></li>
+                                
                         </ul>
                 </div>
+
+
 
 
                 <% else %>
@@ -86,7 +88,9 @@
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
 
-    
+    <% if current_user.whereis == "project_list" %>
+            <%= render "project_list" %>
+    <% end %>
 
 
     <!-- End of our navbar block. -->
