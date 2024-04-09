@@ -6,13 +6,11 @@ class Users::SessionsController < Devise::SessionsController
   # GET /resource/sign_in
   def new
      super
-     puts "SIGNING IN ( NEW )"
   end
 
   # POST /resource/sign_in
   def create
-  #   super
-    puts "SIGNING IN ( CREATE )"
+    super
   end
 
   # DELETE /resource/sign_out

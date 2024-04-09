@@ -7,6 +7,7 @@
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
 #  first_name             :string
+#  isadmin                :boolean
 #  last_name              :string
 #  phone_no               :string
 #  remember_created_at    :datetime

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {
-    sessions: 'users/sessions'
+    sessions: 'users/sessions',
+    log_out: 'users/sign_out'
   }
   resources :issues
   resources :user_stories
