@@ -10,7 +10,19 @@ class Users::SessionsController < Devise::SessionsController
 
   # POST /resource/sign_in
   def create
-    super
+    #super
+    #redirect_to projects_path
+    self.resource = warden.authenticate!(auth_options)
+    sign_in(resource_name, resource)
+    yield resource if block_given?
+
+    user = current_user
+    @memberships = user.memberships
+    
+    puts "-->>>> #{@user.memberships}"
+    
+    redirect_to projects_path
+    
   end
 
   # DELETE /resource/sign_out

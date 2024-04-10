@@ -1,14 +1,19 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Projects</h1>
+<h1>Current Active Projects</h1>
 
-<div id="projects">
-  <% @projects.each do |project| %>
-    <%= render project %>
-    <p>
-      <%= link_to "Show this project", project %>
-    </p>
-  <% end %>
+<div>
+
+<p> Current Projects / Status </p>
+
+<% current_user.whereis = "project" %>
+<% current_user.save %>
+
+<% current_user.memberships.each do |membership| %>
+
+    <% project_data = Project.find(membership.project_id) %>
+    <%= link_to "#{project_data.project_name}", controller: "projects", action: "show", id: project_data.id %>
+
+<% end %>
+
 </div>
-
-<%= link_to "New project", new_project_path %>
