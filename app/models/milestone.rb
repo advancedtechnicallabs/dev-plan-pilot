@@ -11,4 +11,6 @@
 #  project_id                :integer
 #
 class Milestone < ApplicationRecord
+    belongs_to :projects
+    has_many :user_stories
 end

@@ -1,5 +1,16 @@
 <div>
 
 
-<p> Are we here ? <%= current_user.email %> </p>
+<p> Current Projects / Status </p>
+
+<% current_user.whereis = "project" %>
+<% current_user.save %>
+
+<% current_user.memberships.each do |membership| %>
+
+    <% project_data = Project.find(membership.project_id) %>
+    <%= link_to "#{project_data.project_name}", controller: "projects", action: "show", id: project_data.id %>
+
+<% end %>
+
 </div>
