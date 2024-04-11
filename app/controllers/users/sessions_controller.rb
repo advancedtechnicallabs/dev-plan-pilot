@@ -19,8 +19,6 @@ class Users::SessionsController < Devise::SessionsController
     user = current_user
     @memberships = user.memberships
     
-    puts "-->>>> #{@user.memberships}"
-    
     redirect_to projects_path
     
   end

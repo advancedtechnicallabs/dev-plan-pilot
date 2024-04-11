@@ -12,5 +12,5 @@
 #  project_id                :integer
 #
 class UserStory < ApplicationRecord
-    belongs_to :milestones
+    belongs_to :milestone
 end
