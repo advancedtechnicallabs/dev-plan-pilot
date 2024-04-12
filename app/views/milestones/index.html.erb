@@ -3,12 +3,12 @@
 <h1>Milestones</h1>
 
 <div id="milestones">
+  <ul data-controller="sortable">
   <% @milestones.each do |milestone| %>
+    <li>
     <%= render milestone %>
-    <p>
-      <%= link_to "Show this milestone", milestone %>
-    </p>
-  <% end %>
-</div>
+    </li>
 
-<%= link_to "New milestone", new_milestone_path %>
+  <% end %>
+  </ul>
+</div>
