@@ -8,7 +8,7 @@ class UserStoriesController < ApplicationController
 
   def sort
     @user_story = UserStory.find(params[:id])
-    @user_story.update(row_order_position: params[:row_order_position])
+    @user_story.update(row_order_position: params[:row_order_position], milestone_id: params[:milestone_id])
     head :no_content
   end
 

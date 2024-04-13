@@ -11,7 +11,7 @@
  
 
 </div>
-<ul data-controller="sortable">
+<ul data-controller="sortable" data-sortable-group-value="user_stories" data-sortable-milestone-id="<%= milestone.id %>">
   <% milestone.user_stories.rank(:row_order).each do |user_story| %>
         <li data-sortable-update-url="<%= sort_user_story_path(user_story) %>">
       <%= render user_story %>
