@@ -4,13 +4,15 @@
   <p>
     <strong>Descriptive name:</strong>
     <%= milestone.descriptive_name %>
+    <%= milestone.row_order %>
+    <%= milestone.id %>
   </p>
 
  
 
 </div>
 <ul>
-  <% milestone.user_stories.each do |user_story| %>
+  <% milestone.user_stories.rank(:row_order).each do |user_story| %>
 
     <li><%= render user_story %></li>
 

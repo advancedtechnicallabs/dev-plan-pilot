@@ -5,7 +5,11 @@ class MilestonesController < ApplicationController
   def index
     project_id = params[:id]
     project_data = Project.find(project_id)
-    @milestones = project_data.milestones
+    @milestones = project_data.milestones.rank(:row_order)
+  end
+
+  def sort
+    debugger
   end
 
   # GET /milestones/1 or /milestones/1.json

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_04_09_193615) do
+ActiveRecord::Schema[7.0].define(version: 2024_04_13_121522) do
   create_table "issues", force: :cascade do |t|
     t.text "description"
     t.integer "task_id"
@@ -35,6 +35,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_09_193615) do
     t.text "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "row_order"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -56,6 +57,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_09_193615) do
     t.date "estimated_completion_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "row_order"
   end
 
   create_table "users", force: :cascade do |t|

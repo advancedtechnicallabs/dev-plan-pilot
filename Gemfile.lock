@@ -280,6 +280,8 @@ GEM
       thor (~> 1.0)
       zeitwerk (~> 2.5)
     rake (13.1.0)
+    ranked-model (0.4.9)
+      activerecord (>= 5.2)
     ransack (4.0.0)
       activerecord (>= 6.1.5)
       activesupport (>= 6.1.5)
@@ -289,6 +291,8 @@ GEM
     regexp_parser (2.8.0)
     reline (0.3.3)
       io-console (~> 0.5)
+    requestjs-rails (0.0.11)
+      railties (>= 6.1.0)
     responders (3.1.0)
       actionpack (>= 5.2)
       railties (>= 5.2)
@@ -428,7 +432,9 @@ DEPENDENCIES
   rails (~> 7.0.4, >= 7.0.4.3)
   rails-erd
   rails_db
+  ranked-model (~> 0.4.9)
   redis (~> 4.0)
+  requestjs-rails (~> 0.0.11)
   rspec-html-matchers
   rspec-rails (~> 6.0.0)
   rufo

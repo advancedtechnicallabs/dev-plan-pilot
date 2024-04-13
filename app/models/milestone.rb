@@ -5,6 +5,7 @@
 #  id                        :integer          not null, primary key
 #  descriptive_name          :text
 #  estimated_completion_date :date
+#  row_order                 :integer
 #  status                    :text
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
@@ -13,4 +14,7 @@
 class Milestone < ApplicationRecord
     belongs_to :project
     has_many :user_stories
+
+    include RankedModel
+    ranks :row_order
 end

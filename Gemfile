@@ -107,3 +107,7 @@ group :test do
   gem "rspec-html-matchers"
   gem "webmock"
 end
+
+gem "ranked-model", "~> 0.4.9"
+
+gem "requestjs-rails", "~> 0.0.11"

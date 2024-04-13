@@ -5,7 +5,13 @@ Rails.application.routes.draw do
   }
   resources :issues
   resources :user_stories
-  resources :milestones
+  resources :milestones do
+    member do
+      put :sort
+    end
+  end
+
+
   resources :projects
   resources :memberships
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
