@@ -3,7 +3,9 @@ class MilestonesController < ApplicationController
 
   # GET /milestones or /milestones.json
   def index
-    @milestones = Milestone.all
+    project_id = params[:id]
+    project_data = Project.find(project_id)
+    @milestones = project_data.milestones
   end
 
   # GET /milestones/1 or /milestones/1.json
