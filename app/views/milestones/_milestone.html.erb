@@ -11,10 +11,11 @@
  
 
 </div>
-<ul>
+<ul data-controller="sortable">
   <% milestone.user_stories.rank(:row_order).each do |user_story| %>
-
-    <li><%= render user_story %></li>
+        <li data-sortable-update-url="<%= sort_user_story_path(user_story) %>">
+      <%= render user_story %>
+    </li>
 
   <% end %>
 </ul>

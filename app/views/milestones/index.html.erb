@@ -5,7 +5,7 @@
 <div id="milestones">
   <ul data-controller="sortable">
   <% @milestones.each do |milestone| %>
-    <li data-sortable-id="<%= milestone.id %>">
+    <li data-sortable-update-url="<%= sort_milestone_path(milestone) %>">
     <%= render milestone %>
     
     </li>

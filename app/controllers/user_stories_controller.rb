@@ -6,6 +6,12 @@ class UserStoriesController < ApplicationController
     @user_stories = UserStory.all
   end
 
+  def sort
+    @user_story = UserStory.find(params[:id])
+    @user_story.update(row_order_position: params[:row_order_position])
+    head :no_content
+  end
+
   # GET /user_stories/1 or /user_stories/1.json
   def show
   end

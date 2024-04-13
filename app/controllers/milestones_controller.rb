@@ -6,16 +6,11 @@ class MilestonesController < ApplicationController
     project_id = params[:id]
     project_data = Project.find(project_id)
     @milestones = project_data.milestones.rank(:row_order)
-    puts "-------------------------"
-    puts "#{@milestones.inspect}"
-    puts "-------------------------"
 
   end
 
   def sort
     @milestone = Milestone.find(params[:id])
-    puts "milestones ->> #{@milestone.inspect}"
-    puts "id ->> #{params[:id]}"
     @milestone.update(row_order_position: params[:row_order_position])
     head :no_content
   end

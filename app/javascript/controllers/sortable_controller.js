@@ -13,10 +13,11 @@ export default class extends Controller {
   }
 
   onEnd(event) {
+    var sortableUpdateUrl = event.item.dataset.sortableUpdateUrl
     //console.log(event.newIndex)
-    console.log(event.item.dataset.sortableId)
-    put(`/milestones/${event.item.dataset.sortableId}/sort`,{
-      body: JSON.stringify({row_order_position: event.newIndex})
+    console.log(sortableUpdateUrl)
+    put(sortableUpdateUrl, {
+     body: JSON.stringify({row_order_position: event.newIndex})
     })
   }
   

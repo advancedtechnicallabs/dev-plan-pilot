@@ -4,7 +4,14 @@ Rails.application.routes.draw do
     log_out: 'users/sign_out'
   }
   resources :issues
-  resources :user_stories
+
+  resources :user_stories do
+    member do
+      put :sort
+    end
+  end
+
+
   resources :milestones do
     member do
       put :sort
