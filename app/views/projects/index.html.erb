@@ -1,19 +1,49 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Current Active Projects</h1>
+<h2 style="text-align: center;">Current Active Projects</h2>
 
+<hr class="border border-primary border-1 opacity-75">
 <div>
 
-<p> Current Projects / Status </p>
+
 
 <% current_user.whereis = "project" %>
 <% current_user.save %>
 
 <% current_user.memberships.each do |membership| %>
+    <div class="container text-center alert alert-success col" role="alert">
 
-    <% project_data = Project.find(membership.project_id) %>
-    <%= link_to "#{project_data.project_name}", controller: "projects", action: "show", id: project_data.id %>
+        <div class="row">
 
+            <div class="col" role="alert">
+                <% project_data = Project.find(membership.project_id) %>
+                    <div class="fs-4">
+                        <%= project_data.project_name %>
+                        
+                    </div>
+            </div>
+
+            <div class="col">
+                    <div class="fs-4">
+                        Status : Current
+                    </div>
+            </div>
+
+            <div class="col">
+                <div class="fs-4">
+                    <%= link_to "Edit", controller: "projects", action: "show", id: project_data.id %>
+                </div>
+
+                
+                
+            </div>
+
+
+        </div>
+        
+
+
+    </div>
 <% end %>
 
 </div>
