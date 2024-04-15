@@ -1,7 +1,7 @@
 <p style="color: green"><%= notice %></p>
 
 
-
+<hr class="border border-primary border-1 opacity-75">
 <div>
 
 <p class="h2 pb-2 mb-4 text-primary-emphasis border-bottom border-primary-emphasis" style="text-align: center"> Current Projects / Status </p>
@@ -10,6 +10,7 @@
 <% current_user.save %>
 
 <% current_user.memberships.each do |membership| %>
+    <div class="container text-center alert alert-success col" role="alert">
 
     <% project_data = Project.find(membership.project_id) %>
 
