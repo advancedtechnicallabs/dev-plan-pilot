@@ -20,11 +20,11 @@
     <p class="card-text"><h4>Skillset :  <%= @project.skillset_requirements %></h4></p>
 
     <hr>
-    <p class="card-text"><h4>Budget Amount :  <%= @project.budget_amount %>0 with <%= @project.budget_amount - 10000.00 %>0 left over. </h4></p>
-    <% percentage_value = (10000.00/(@project.budget_amount-10000.00))*100 %>
+    <p class="card-text"><h4>Budget Amount :  <%= @project.budget_amount %>0 with <%= @project.budget_amount - 28000.00 %>0 left over. </h4></p>
+    <% percentage_value = (28000.00 / @project.budget_amount)*100 %>
     
     <div class="progress" style="height: 30px;">
-        <div class="progress-bar bg-success" role="progressbar" style="width: 25%;" aria-valuenow="<%= percentage_value.round %>" aria-valuemin="0" aria-valuemax="100"></div>
+        <div class="progress-bar bg-warning" role="progressbar" style="width: <%= percentage_value.round %>%;" aria-valuenow="<%= percentage_value.round %>" aria-valuemin="0" aria-valuemax="100"></div>
     </div>
 
   </div>
