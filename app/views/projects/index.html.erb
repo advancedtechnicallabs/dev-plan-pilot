@@ -17,8 +17,12 @@
 
     <div class="container text-center">
 
+        <% if project_data.status.downcase == "current" %>
+            <div class="alert alert-success" role="alert">
+        <% elsif project_data.status.downcase == "at risk" %>
+            <div class="alert alert-warning" role="alert">
+        <% end %>
 
-        <div class="alert alert-success" role="alert">
 
 
             <div class="row">
@@ -29,7 +33,7 @@
                 </div>
                 <div class="col">
 
-                    <h4>Status: Current</h4>
+                    <h4>Status: <%= project_data.status %></h4>
                 
                 </div>
                     <div class="col">
