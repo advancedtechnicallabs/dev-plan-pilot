@@ -1,10 +1,10 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Current Active Projects</h1>
+
 
 <div>
 
-<p> Current Projects / Status </p>
+<p class="h2 pb-2 mb-4 text-primary-emphasis border-bottom border-primary-emphasis" style="text-align: center"> Current Projects / Status </p>
 
 <% current_user.whereis = "project" %>
 <% current_user.save %>
@@ -12,8 +12,38 @@
 <% current_user.memberships.each do |membership| %>
 
     <% project_data = Project.find(membership.project_id) %>
-    <%= link_to "#{project_data.project_name}", controller: "projects", action: "show", id: project_data.id %>
 
-<% end %>
+ 
+
+    <div class="container text-center">
+
+
+        <div class="alert alert-success" role="alert">
+
+
+            <div class="row">
+                <div class="col">
+
+                       <h4><%= project_data.project_name %></h4>
+      
+                </div>
+                <div class="col">
+
+                    <h4>Status: Current</h4>
+                
+                </div>
+                    <div class="col">
+
+                        <h4><%= link_to "Edit", controller: "projects", action: "show", id: project_data.id %></h4>
+      
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+
+    <% end %>
 
 </div>
