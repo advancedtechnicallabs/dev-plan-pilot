@@ -2,3 +2,10 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 import "@rails/request.js"
+
+
+import jquery from "jquery";
+window.jQuery = jquery;
+window.$ = jquery;
+import Rails from "@rails/ujs"
+Rails.start();

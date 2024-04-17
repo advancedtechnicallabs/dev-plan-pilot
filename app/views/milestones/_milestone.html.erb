@@ -1,9 +1,28 @@
 <div id="<%= dom_id milestone %>">
 
-
   <p>
     <div class="w-50 alert alert-success" role="alert">
-        <%= milestone.descriptive_name %>
+ 
+          <div class="row">
+          
+            <div class="col-10">
+                <%= milestone.descriptive_name %>            
+            </div>
+
+            <div class="col-2">
+
+                <i class="fa-solid fa-pencil fa-lg"></i>
+                &nbsp;
+
+                <i class="fa-solid fa-plus fa-lg"></i>
+                &nbsp;
+
+                <i class="fa-regular fa-calendar-days fa-lg"></i>
+
+            </div>
+
+          </div>
+
     </div>
 
   </p>

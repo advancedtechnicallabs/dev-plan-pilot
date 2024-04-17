@@ -36,22 +36,27 @@ class MilestonesController < ApplicationController
       if @milestone.save
         format.html { redirect_to milestone_url(@milestone), notice: "Milestone was successfully created." }
         format.json { render :show, status: :created, location: @milestone }
+        format.js
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @milestone.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
 
   # PATCH/PUT /milestones/1 or /milestones/1.json
   def update
+    
     respond_to do |format|
       if @milestone.update(milestone_params)
         format.html { redirect_to milestone_url(@milestone), notice: "Milestone was successfully updated." }
         format.json { render :show, status: :ok, location: @milestone }
+        format.js
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @milestone.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -74,6 +79,7 @@ class MilestonesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def milestone_params
-      params.require(:milestone).permit(:project_id, :estimated_completion_date, :descriptive_name, :status)
+      params.permit(:id, :project_id, :estimated_completion_date, :descriptive_name, :status)
+      
     end
 end

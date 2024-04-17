@@ -21,9 +21,6 @@ export default class extends Controller {
   onEnd(event) {
     var sortableUpdateUrl = event.item.dataset.sortableUpdateUrl
     var sortableMilestoneId = event.to.dataset.sortableMilestoneId
-    //console.log(event.newIndex)
-    //console.log(sortableUpdateUrl)
-    console.log(event.to.dataset.sortableMilestoneId)
     put(sortableUpdateUrl, {
      body: JSON.stringify({row_order_position: event.newIndex, milestone_id: sortableMilestoneId})
     })
