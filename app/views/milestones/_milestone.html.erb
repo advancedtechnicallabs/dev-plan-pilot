@@ -5,17 +5,22 @@
  
           <div class="row">
           
-            <div class="col-10">
+            <div class="col-10" id="description">
                 <%= milestone.descriptive_name %>            
             </div>
 
             <div class="col-2">
 
-                <i class="fa-solid fa-pencil fa-lg"></i>
-                &nbsp;
+                <%= link_to edit_milestone_path(milestone.id),
+                    class: "btn btn-link btn-sm text-muted",
+                    remote: true do
+                %>
 
+                <i class="fa-solid fa-pencil fa-lg"></i>
+              <% end %>
+                
                 <i class="fa-solid fa-plus fa-lg"></i>
-                &nbsp;
+
 
                 <i class="fa-regular fa-calendar-days fa-lg"></i>
 

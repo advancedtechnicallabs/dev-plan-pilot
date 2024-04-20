@@ -26,6 +26,7 @@ class MilestonesController < ApplicationController
 
   # GET /milestones/1/edit
   def edit
+    render :edit
   end
 
   # POST /milestones or /milestones.json
@@ -48,6 +49,8 @@ class MilestonesController < ApplicationController
   # PATCH/PUT /milestones/1 or /milestones/1.json
   def update
     
+    puts "THIS IS A TEST IN UPDATE."
+
     respond_to do |format|
       if @milestone.update(milestone_params)
         format.html { redirect_to milestone_url(@milestone), notice: "Milestone was successfully updated." }
