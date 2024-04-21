@@ -11,27 +11,19 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :project_id, style: "display: block" %>
-    <%= form.number_field :project_id %>
-  </div>
-
-  <div>
-    <%= form.label :estimated_completion_date, style: "display: block" %>
+  <div class="w-50 alert alert-success" id="milestone_edit_form" role="alert">
+    <%= form.label "Milestone", style: "display: block" %>
+    <%= form.text_field :descriptive_name, class: "bg-success-subtle", :maxlength => "40" %>
+    &nbsp &nbsp
+    <%= form.label "Due : " %>
     <%= form.date_field :estimated_completion_date %>
+
+    &nbsp &nbsp
+    <%= form.button "Update", class: "update_btn btn btn-danger btn-sm", method: :update %>
+    &nbsp
+    <%= form.button "Cancel", class: "btn btn-outline-success btn-sm" %>
+
   </div>
 
-  <div>
-    <%= form.label :descriptive_name, style: "display: block" %>
-    <%= form.text_area :descriptive_name %>
-  </div>
 
-  <div>
-    <%= form.label :status, style: "display: block" %>
-    <%= form.text_area :status %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
 <% end %>

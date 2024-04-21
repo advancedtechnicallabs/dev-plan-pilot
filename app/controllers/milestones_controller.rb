@@ -26,7 +26,10 @@ class MilestonesController < ApplicationController
 
   # GET /milestones/1/edit
   def edit
-    render :edit
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # POST /milestones or /milestones.json
@@ -50,6 +53,8 @@ class MilestonesController < ApplicationController
   def update
     
     puts "THIS IS A TEST IN UPDATE."
+
+    puts "milestone 2--->>>>>> #{params[:milestone][:descriptive_name]}"
 
     respond_to do |format|
       if @milestone.update(milestone_params)

@@ -11,16 +11,15 @@
 
             <div class="col-2">
 
-                <%= link_to edit_milestone_path(milestone.id),
+                <%= link_to edit_milestone_path(milestone), 
                     class: "btn btn-link btn-sm text-muted",
-                    remote: true do
-                %>
+                    remote: true do %>
 
-                <i class="fa-solid fa-pencil fa-lg"></i>
-              <% end %>
+                  <i class="fa-solid fa-pencil fa-lg"></i>
+
+                <% end %>
                 
                 <i class="fa-solid fa-plus fa-lg"></i>
-
 
                 <i class="fa-regular fa-calendar-days fa-lg"></i>
 

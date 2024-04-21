@@ -1,13 +1,10 @@
 console.log("THIS IS BEING RUN INSTEAD OF THE HTML !!!!")
-$("#<%= dom_id(@milestone) %> #description").replaceWith("<div id='form_div'><input type='text' name='edit_form' id='edit_form' value='<%= @milestone.descriptive_name %>'><button type='button' id='DONE'>DONE</button></div>")
 
-$("#DONE").on ("click", function () {
+var original_dom = $("#<%= dom_id(@milestone) %>")
 
-  var input_data = $("#edit_form").val();
+$("#<%= dom_id(@milestone) %>").replaceWith("<%= escape_javascript(render "milestones/form", milestone: @milestone) %>");
 
-  $("#form_div").replaceWith("<div class='col-10' id='description'></div>")
-  $("#description").text(input_data)
+$(".update_btn").on("click", function() {
+  console.log("Update button clicked")
 
-  
-
-});
+})
