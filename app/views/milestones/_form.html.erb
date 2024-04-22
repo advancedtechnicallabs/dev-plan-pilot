@@ -1,4 +1,5 @@
-<%= form_with(model: @milestone) do |form| %>
+<div id="milestone_edit_form">
+<%= form_with(model: @milestone, local: false) do |form| %>
   <% if @milestone.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(@milestone.errors.count, "error") %> prohibited this milestone from being saved:</h2>
@@ -11,7 +12,7 @@
     </div>
   <% end %>
 
-  <div class="w-50 alert alert-success" id="milestone_edit_form" role="alert">
+  <div class="w-50 alert alert-success" role="alert">
     <%= form.label "Milestone", style: "display: block" %>
     <%= form.text_field :descriptive_name, class: "bg-success-subtle", :maxlength => "40" %>
     &nbsp &nbsp
@@ -19,11 +20,11 @@
     <%= form.date_field :estimated_completion_date %>
 
     &nbsp &nbsp
-    <%= form.submit "Update", class: "update_btn btn btn-danger btn-sm", method: :update %>
+    <%= form.submit "Update", class: "update_btn btn btn-danger btn-sm", method: :update, remote: true %>
     &nbsp
-    <%= form.submit "Cancel", class: "cancel_btn btn btn-outline-success btn-sm" %>
+    <%= form.submit "Cancel", class: "cancel_btn btn btn-outline-success btn-sm", method: :update, remote: true %>
 
   </div>
-
-
 <% end %>
+
+</div>

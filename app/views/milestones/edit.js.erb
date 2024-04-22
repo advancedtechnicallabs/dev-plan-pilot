@@ -1,6 +1,4 @@
 console.log("THIS IS BEING RUN INSTEAD OF THE HTML !!!!")
 
-var original_dom = $("#<%= dom_id(@milestone) %>")
 
 $("#<%= dom_id(@milestone) %>").replaceWith("<%= escape_javascript(render "milestones/form", milestone: @milestone) %>");
-

@@ -29,7 +29,6 @@ class MilestonesController < ApplicationController
   # GET /milestones/1/edit
   def edit
 
-
     respond_to do |format|
       format.html
       format.js
@@ -57,35 +56,26 @@ class MilestonesController < ApplicationController
   def update
     
     puts "TEST ->> #{params[:commit]}"
-
-
     puts "milestone 2--->>>>>> #{params[:milestone][:descriptive_name]}"
-
     puts "milestone ->>>> #{@milestone.inspect}"
 
-    @milestone.descriptive_name = params[:milestone][:descriptive_name]
-    @milestone.estimated_completion_date = params[:milestone][:estimated_completion_date]
+    respond_to do |format|
 
+      if params[:commit] == "Update"
+        @milestone.descriptive_name = params[:milestone][:descriptive_name]
+        @milestone.estimated_completion_date = params[:milestone][:estimated_completion_date]
 
-    if params[:commit] != "Cancel"
+        if @milestone.update(@milestones.to_h)
+          format.js
+        end
 
-      if !@milestone.update(@milestones.to_h)
-        puts "Couldn't update"
+      else
+        format.js
+
       end
     
     end
-
-  #  respond_to do |format|
-  #    if @milestone.update(milestone_params)
-  #      format.html { redirect_to milestone_url(@milestone), notice: "Milestone was successfully updated." }
-  #      format.json { render :show, status: :ok, location: @milestone }
-  #      format.js
-  #    else
-  #      format.html { render :edit, status: :unprocessable_entity }
-  #      format.json { render json: @milestone.errors, status: :unprocessable_entity }
-  #      format.js
-  #    end
-  #  end
+    
   end
 
   # DELETE /milestones/1 or /milestones/1.json
