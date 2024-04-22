@@ -1,0 +1,8 @@
+console.log("TEST TEST!!!! ")
+
+$("#<%= @element_dom %>").after("<div id='<%= dom_id(@milestone) %>'><%= escape_javascript(render "milestones/milestone", milestone: @milestone) %></div>");
+
+$(document).ready(function () {
+    location.reload(true)
+    $("#<%= dom_id(@milestone) %>").load(location.href + " #<%= dom_id(@milestone) %>")
+})

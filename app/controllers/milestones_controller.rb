@@ -3,13 +3,11 @@ class MilestonesController < ApplicationController
 
   # GET /milestones or /milestones.json
   def index
-    project_id = params[:id]
-    project_data = Project.find(project_id)
+    @project_id = params[:id]
+
+    project_data = Project.find(@project_id)
     @milestones = project_data.milestones.rank(:row_order)
-
   end
-
-
 
   def sort
     @milestone = Milestone.find(params[:id])
@@ -23,7 +21,21 @@ class MilestonesController < ApplicationController
 
   # GET /milestones/new
   def new
+
+    
     @milestone = Milestone.new
+    @milestone.descriptive_name = "Untitled sprint/milestone"
+    @milestone.project_id = params[:proj_id]
+    @milestone.row_order = params[:rank_order].to_i + 1
+    @milestone.save
+
+    @element_dom = params[:obj_model_id]
+
+    respond_to do |format|
+      format.html
+      format.js
+    end  
+
   end
 
   # GET /milestones/1/edit
@@ -33,6 +45,7 @@ class MilestonesController < ApplicationController
       format.html
       format.js
     end
+
   end
 
   # POST /milestones or /milestones.json
@@ -54,10 +67,6 @@ class MilestonesController < ApplicationController
 
   # PATCH/PUT /milestones/1 or /milestones/1.json
   def update
-    
-    puts "TEST ->> #{params[:commit]}"
-    puts "milestone 2--->>>>>> #{params[:milestone][:descriptive_name]}"
-    puts "milestone ->>>> #{@milestone.inspect}"
 
     respond_to do |format|
 
@@ -70,6 +79,7 @@ class MilestonesController < ApplicationController
         end
 
       else
+
         format.js
 
       end
@@ -85,6 +95,7 @@ class MilestonesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to milestones_url, notice: "Milestone was successfully destroyed." }
       format.json { head :no_content }
+      format.js
     end
   end
 
@@ -94,9 +105,5 @@ class MilestonesController < ApplicationController
       @milestone = Milestone.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
-#    def milestone_params
- #     params.permit(:id, :project_id, :estimated_completion_date, :descriptive_name, :status)
-  #    
-   # end
+
 end
