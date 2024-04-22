@@ -1,10 +1,10 @@
-<%= form_with(model: milestone) do |form| %>
-  <% if milestone.errors.any? %>
+<%= form_with(model: @milestone) do |form| %>
+  <% if @milestone.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(milestone.errors.count, "error") %> prohibited this milestone from being saved:</h2>
+      <h2><%= pluralize(@milestone.errors.count, "error") %> prohibited this milestone from being saved:</h2>
 
       <ul>
-        <% milestone.errors.each do |error| %>
+        <% @milestone.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
@@ -19,9 +19,9 @@
     <%= form.date_field :estimated_completion_date %>
 
     &nbsp &nbsp
-    <%= form.button "Update", class: "update_btn btn btn-danger btn-sm", method: :update %>
+    <%= form.submit "Update", class: "update_btn btn btn-danger btn-sm", method: :update %>
     &nbsp
-    <%= form.button "Cancel", class: "btn btn-outline-success btn-sm" %>
+    <%= form.submit "Cancel", class: "cancel_btn btn btn-outline-success btn-sm" %>
 
   </div>
 

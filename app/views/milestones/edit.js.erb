@@ -4,7 +4,3 @@ var original_dom = $("#<%= dom_id(@milestone) %>")
 
 $("#<%= dom_id(@milestone) %>").replaceWith("<%= escape_javascript(render "milestones/form", milestone: @milestone) %>");
 
-$(".update_btn").on("click", function() {
-  console.log("Update button clicked")
-
-})

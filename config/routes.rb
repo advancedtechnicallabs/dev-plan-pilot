@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+
+
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     log_out: 'users/sign_out'
@@ -17,6 +20,7 @@ Rails.application.routes.draw do
       put :sort
     end
   end
+
 
 
   resources :projects
