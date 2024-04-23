@@ -1,0 +1,6 @@
+$("#<%= @element_dom %>").after("<div id='<%= dom_id(@user_story) %>'><%= escape_javascript(render "user_stories/user_story", user_story: @user_story) %></div>");
+
+$(document).ready(function () {
+    location.reload(true)
+    $("#<%= dom_id(@user_story) %>").load(location.href + " #<%= dom_id(@user_story) %>")
+})

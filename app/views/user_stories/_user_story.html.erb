@@ -6,19 +6,47 @@
           <div class="row">
 
             <div class="col-10">
-                <span class="badge text-bg-secondary">CK</span>
+
+            <% membership_assigned = Membership.find(user_story.membership_id) %>
+            <% assigned_user = User.find(membership_assigned.user_id) %>
+            <%= image_tag assigned_user.avatar_loc, :size => "50x50", :style => "border-radius: 50%",  :title => "#{assigned_user.first_name} #{assigned_user.last_name}"  %>
+                
                 <%= user_story.descriptive_name %>
             </div>
 
             <div class="col-2">
+
                 
-                <i class="fa-solid fa-pencil fa-lg"></i>
+
+                <%= link_to edit_user_story_path(user_story), 
+                    class: "btn btn-link btn-sm text-muted",
+                    remote: true do %>
+
+                  <i class="fa-solid fa-pencil fa-lg"></i>
+
+                <% end %>
                 &nbsp;
 
-                <i class="fa-solid fa-plus fa-lg"></i>
+                <%= link_to new_user_story_path(:proj_id => user_story.project_id, :obj_model_id => dom_id(user_story), :rank_order => user_story.row_order, :membership_no => user_story.membership_id, :milestone_no => user_story.milestone_id), 
+                    class: "btn btn-link btn-sm text-muted",
+                    remote: true do %>
+
+                  <i class="fa-solid fa-plus fa-lg"></i>
+
+                <% end %>
                 &nbsp;
                 
-                <i class="fa-regular fa-trash-can fa-lg"></i>
+                <%= link_to user_story,
+                    method: :delete, 
+                    class: "btn btn-link btn-sm text-muted",
+                    remote: true do %>
+
+                  <i class="fa-regular fa-trash-can fa-lg"></i>
+
+                <% end %>
+                
+
+                
             </div>
 
           </div>

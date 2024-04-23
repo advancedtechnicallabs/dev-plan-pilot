@@ -19,10 +19,30 @@ class UserStoriesController < ApplicationController
   # GET /user_stories/new
   def new
     @user_story = UserStory.new
+    @user_story.descriptive_name = "Untitled User Story/Task"
+    @user_story.project_id = 1
+    @user_story.row_order = params[:rank_order].to_i + 1
+    @user_story.membership_id = params[:membership_no].to_i
+    @user_story.milestone_id = params[:milestone_no]
+    @user_story.save
+    
+    @element_dom = params[:obj_model_id]
+
+    respond_to do |format|
+      format.html
+      format.js
+    end  
+
   end
 
   # GET /user_stories/1/edit
   def edit
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
+
   end
 
   # POST /user_stories or /user_stories.json
@@ -43,14 +63,22 @@ class UserStoriesController < ApplicationController
   # PATCH/PUT /user_stories/1 or /user_stories/1.json
   def update
     respond_to do |format|
-      if @user_story.update(user_story_params)
-        format.html { redirect_to user_story_url(@user_story), notice: "User story was successfully updated." }
-        format.json { render :show, status: :ok, location: @user_story }
+
+      if params[:commit] == "Update"
+        @user_story.descriptive_name = params[:user_story][:descriptive_name]
+
+        if @user_story.update(@user_stories.to_h)
+          format.js
+        end
+
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @user_story.errors, status: :unprocessable_entity }
+
+        format.js
+
       end
+    
     end
+    
   end
 
   # DELETE /user_stories/1 or /user_stories/1.json
@@ -60,6 +88,7 @@ class UserStoriesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to user_stories_url, notice: "User story was successfully destroyed." }
       format.json { head :no_content }
+      format.js
     end
   end
 
@@ -70,7 +99,7 @@ class UserStoriesController < ApplicationController
     end
 
     # Only allow a list of trusted parameters through.
-    def user_story_params
-      params.require(:user_story).permit(:milestone_id, :descriptive_name, :membership_id, :project_id, :estimated_completion_date)
-    end
+#    def user_story_params
+#      params.require(:user_story).permit(:milestone_id, :descriptive_name, :membership_id, :project_id, :estimated_completion_date)
+#    end
 end

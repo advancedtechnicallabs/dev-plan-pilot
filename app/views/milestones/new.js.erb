@@ -1,5 +1,3 @@
-console.log("TEST TEST!!!! ")
-
 $("#<%= @element_dom %>").after("<div id='<%= dom_id(@milestone) %>'><%= escape_javascript(render "milestones/milestone", milestone: @milestone) %></div>");
 
 $(document).ready(function () {

@@ -21,10 +21,9 @@ class MilestonesController < ApplicationController
 
   # GET /milestones/new
   def new
-
     
     @milestone = Milestone.new
-    @milestone.descriptive_name = "Untitled sprint/milestone"
+    @milestone.descriptive_name = "Untitled Sprint/Milestone"
     @milestone.project_id = params[:proj_id]
     @milestone.row_order = params[:rank_order].to_i + 1
     @milestone.save

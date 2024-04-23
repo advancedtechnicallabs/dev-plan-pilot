@@ -11,32 +11,14 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :milestone_id, style: "display: block" %>
-    <%= form.number_field :milestone_id %>
-  </div>
+  <div class="w-50 alert alert-light border border-dark" role="alert">
+    <%= form.label "User Story", style: "display: block" %>
+    <%= form.text_field :descriptive_name, class: "bg-success-subtle", :maxlength => "80" %>
+    &nbsp &nbsp
 
-  <div>
-    <%= form.label :descriptive_name, style: "display: block" %>
-    <%= form.text_area :descriptive_name %>
-  </div>
+    <%= form.submit "Update", class: "update_btn btn btn-danger btn-sm", method: :update, remote: true %>
+    &nbsp
+    <%= form.submit "Cancel", class: "cancel_btn btn btn-outline-success btn-sm", method: :update, remote: true %>
 
-  <div>
-    <%= form.label :membership_id, style: "display: block" %>
-    <%= form.number_field :membership_id %>
-  </div>
-
-  <div>
-    <%= form.label :project_id, style: "display: block" %>
-    <%= form.number_field :project_id %>
-  </div>
-
-  <div>
-    <%= form.label :estimated_completion_date, style: "display: block" %>
-    <%= form.date_field :estimated_completion_date %>
-  </div>
-
-  <div>
-    <%= form.submit %>
   </div>
 <% end %>

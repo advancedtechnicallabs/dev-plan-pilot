@@ -1,0 +1,1 @@
+$("#<%= dom_id(@user_story) %>").replaceWith("<%= escape_javascript(render "user_stories/form", user_story: @user_story) %>");
