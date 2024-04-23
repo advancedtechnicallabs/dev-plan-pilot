@@ -4,6 +4,7 @@
 #
 #  id                     :integer          not null, primary key
 #  access_role            :string
+#  avatar_loc             :text
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
 #  first_name             :string

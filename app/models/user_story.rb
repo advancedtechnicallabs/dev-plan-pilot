@@ -14,6 +14,7 @@
 #
 class UserStory < ApplicationRecord
     belongs_to :milestone
+    belongs_to :membership
 
     include RankedModel
     ranks :row_order, with_same: :milestone_id
