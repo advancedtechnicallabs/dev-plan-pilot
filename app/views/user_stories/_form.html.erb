@@ -18,7 +18,7 @@
     <%= form.text_field :descriptive_name, class: "bg-success-subtle", :maxlength => "80" %>
     &nbsp &nbsp
 
-    <%= form.select(:user, :user_id, User.all.collect { |u| [ u.email, u.id ]}) %>
+    <%= select("user", "user_id", User.all.collect { |user_selection| [ user_selection.email, user_selection.id ]}) %>
 
     <%= form.submit "Update", class: "update_btn btn btn-danger btn-sm", method: :update, remote: true %>
     &nbsp

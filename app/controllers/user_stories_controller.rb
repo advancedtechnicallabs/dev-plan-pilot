@@ -25,7 +25,7 @@ class UserStoriesController < ApplicationController
     @user_story.membership_id = params[:membership_no].to_i
     @user_story.milestone_id = params[:milestone_no]
     @user_story.save
-    
+
     @element_dom = params[:obj_model_id]
 
     respond_to do |format|
@@ -66,6 +66,22 @@ class UserStoriesController < ApplicationController
 
       if params[:commit] == "Update"
         @user_story.descriptive_name = params[:user_story][:descriptive_name]
+
+        user_selection_map = params[:user]
+
+        parsed_user_selection = JSON.parse(user_selection_map.to_json)
+
+        matching_milestone = Milestone.find(@user_story.milestone_id)
+
+        selected_user_id = parsed_user_selection["user_id"].to_i
+
+
+
+        proj_id = matching_milestone.project_id
+
+        user_membership_id = Membership.where({project_id: proj_id, user_id: selected_user_id}).first
+
+        @user_story.membership_id = user_membership_id.id
 
         if @user_story.update(@user_stories.to_h)
           format.js
