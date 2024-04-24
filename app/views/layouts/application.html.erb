@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Project Organizer</title>
+    <title>Plan Pilot</title>
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <%= csrf_meta_tags %>
         <%= csp_meta_tag %>
@@ -37,8 +37,9 @@
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
         <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
-        <script src="../../code/highcharts-gantt.js"></script>
-        <script src="../../code/modules/accessibility.js"></script>
+        <%= stylesheet_link_tag 'https://cdn.dhtmlx.com/gantt/edge/dhtmlxgantt.css' %>
+        <%= javascript_include_tag 'https://cdn.dhtmlx.com/gantt/edge/dhtmlxgantt.js' %>    
+
 
 
         <script>
@@ -50,6 +51,7 @@
                 $("#about").click(function(){
                     $("#aboutModal").modal('show');
                 });
+
 
             });
 
@@ -67,6 +69,9 @@
             <a class="navbar-brand text-secondary" id="about" data-bs-toggle="modal" data-bs-target="#aboutModal">About</a>
                
                 <% if user_signed_in? %>
+
+                <a class="navbar-brand text-secondary" id="#gannt"  href="/gannt">Timelines</a>
+                <a class="navbar-brand text-secondary" id="#projects"  href="/projects">Projects</a>
 
                 <div class="dropdown">
                         <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">

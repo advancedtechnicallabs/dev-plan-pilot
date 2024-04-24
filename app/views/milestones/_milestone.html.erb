@@ -6,11 +6,12 @@
  
           <div class="row">
           
-            <div class="col-8" id="description">
+            <div class="col-6" id="description">
                 <%= milestone.descriptive_name %>            
             </div>
 
-            <div class="col-2">To Complete On : <br><%= milestone.estimated_completion_date %></div>
+            <div class="col-4">Start : <%= milestone.estimated_start_date %>
+            <br> Due : <%= milestone.estimated_completion_date %></div>
 
             <div class="col-2">
 

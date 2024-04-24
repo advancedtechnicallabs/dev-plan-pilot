@@ -5,6 +5,7 @@
 #  id                        :integer          not null, primary key
 #  descriptive_name          :text
 #  estimated_completion_date :date
+#  estimated_start_date      :date
 #  row_order                 :integer
 #  status                    :text
 #  created_at                :datetime         not null
