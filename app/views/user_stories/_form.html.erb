@@ -1,0 +1,28 @@
+<%= form_with(model: user_story) do |form| %>
+  <% if user_story.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(user_story.errors.count, "error") %> prohibited this user_story from being saved:</h2>
+
+      <ul>
+        <% user_story.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% all_users = User.all %>
+
+  <div class="w-50 alert alert-light border border-dark" role="alert">
+    <%= form.label "User Story", style: "display: block" %>
+    <%= form.text_field :descriptive_name, class: "bg-success-subtle", :maxlength => "80" %>
+    &nbsp &nbsp
+
+    <%= select("user", "user_id", User.all.collect { |user_selection| [ user_selection.email, user_selection.id ]}) %>
+
+    <%= form.submit "Update", class: "update_btn btn btn-danger btn-sm", method: :update, remote: true %>
+    &nbsp
+    <%= form.submit "Cancel", class: "cancel_btn btn btn-outline-success btn-sm", method: :update, remote: true %>
+
+  </div>
+<% end %>

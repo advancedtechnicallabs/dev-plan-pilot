@@ -27,6 +27,7 @@ module RailsTemplate
       g.helper false
     end
 
+    config.assets.paths << Rails.root.join("app", "assets", "img")
     config.action_controller.default_protect_from_forgery = false
     config.generators.system_tests = nil
   end

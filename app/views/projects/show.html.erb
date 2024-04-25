@@ -1,0 +1,51 @@
+<div class="card">
+
+  <div class="card-body">
+    <h2 class="card-title" style="text-align: center"><%= @project.project_name %></h2>
+    <p class="card-text"><h5><%= @project.project_description %></h5></p>
+
+    <hr>
+
+    <p class="card-text"><h4>Status : <%= @project.status %></h2></p>
+
+    <hr>
+    <p class="card-text"><h4>Est. Completion :  <%= @project.estimated_completion_date %></h4></p>
+
+    <hr>
+    <p class="card-text"><h4>Skillset :  <%= @project.skillset_requirements %></h4></p>
+
+    <hr>
+    <p class="card-text"><h4>Budget Amount :  $<%= @project.budget_amount %>0 with $<%= @project.budget_amount - @project.budget_amount_used %>0 left over. </h4></p>
+    <% percentage_value = (@project.budget_amount_used / @project.budget_amount)*100 %>
+    
+    <div class="progress" style="height: 30px;">
+
+      <% if percentage_value < 50.0 %>
+        <div class="progress-bar bg-success" role="progressbar" style="width: <%= percentage_value.round %>%;" aria-valuenow="<%= percentage_value.round %>" aria-valuemin="0" aria-valuemax="100"></div>
+      <% end %>
+
+      <% if percentage_value >= 50.0 && percentage_value < 75.0  %>
+        <div class="progress-bar bg-warning" role="progressbar" style="width: <%= percentage_value.round %>%;" aria-valuenow="<%= percentage_value.round %>" aria-valuemin="0" aria-valuemax="100"></div>
+      <% end %>
+
+      <% if percentage_value >= 75.0 %>
+        <div class="progress-bar bg-danger" role="progressbar" style="width: <%= percentage_value.round %>%;" aria-valuenow="<%= percentage_value.round %>" aria-valuemin="0" aria-valuemax="100"></div>
+      <% end %>
+
+    </div>
+
+  </div>
+
+
+    <div class="btn-toolbar" role="toolbar">
+      
+        <div class="container text-center">      
+          <div class="btn btn-info btn-group me-4 text-primary-emphasis" role="group"><%= link_to "Back to projects", projects_path %></div>
+          <div class="btn btn-info btn-group me-4 text-primary-emphasis" role="group"><%= link_to "Project Breakdown", controller: "milestones", action: "index", id: @project.id %></div>
+        </div>
+    
+    </div>
+
+
+
+</div>

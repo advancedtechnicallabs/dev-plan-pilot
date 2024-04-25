@@ -1,0 +1,15 @@
+
+<h1 style="text-align: center">Project Breakdown</h1>
+<hr>
+
+<div id="milestones">
+  <ul data-controller="sortable">
+  <% @milestones.each do |milestone| %>
+    <li style="list-style-type: none" data-sortable-update-url="<%= sort_milestone_path(milestone) %>">
+    <%= render milestone %>
+    
+    </li>
+
+  <% end %>
+  </ul>
+</div>

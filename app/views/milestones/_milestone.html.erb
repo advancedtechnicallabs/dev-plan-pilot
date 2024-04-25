@@ -1,0 +1,63 @@
+<div id="<%= dom_id milestone %>">
+
+
+  <p>
+    <div class="w-50 alert alert-success" role="alert">
+ 
+          <div class="row">
+          
+            <div class="col-6" id="description">
+                <%= milestone.descriptive_name %>            
+            </div>
+
+            <div class="col-4">Start : <%= milestone.estimated_start_date %>
+            <br> Due : <%= milestone.estimated_completion_date %></div>
+
+            <div class="col-2">
+
+                <%= link_to edit_milestone_path(milestone), 
+                    class: "btn btn-link btn-sm text-muted",
+                    remote: true do %>
+
+                  <i class="fa-solid fa-pencil fa-lg"></i>
+
+                <% end %>
+
+                <%= link_to new_milestone_path(:proj_id => milestone.project_id, :obj_model_id => dom_id(milestone), :rank_order => milestone.row_order), 
+                    class: "btn btn-link btn-sm text-muted",
+                    remote: true do %>
+
+                  <i class="fa-solid fa-plus fa-lg"></i>
+
+                <% end %>
+
+                <%= link_to milestone,
+                    method: :delete, 
+                    class: "btn btn-link btn-sm text-muted",
+                    remote: true do %>
+
+                  <i class="fa-regular fa-trash-can fa-lg"></i>
+
+                <% end %>
+
+
+
+            </div>
+
+          </div>
+
+    </div>
+
+  </p>
+
+ 
+
+</div>
+<ul data-controller="sortable" data-sortable-group-value="user_stories" data-sortable-milestone-id="<%= milestone.id %>">
+  <% milestone.user_stories.rank(:row_order).each do |user_story| %>
+        <li style="list-style-type: none" data-sortable-update-url="<%= sort_user_story_path(user_story) %>">
+      <%= render user_story %>
+    </li>
+
+  <% end %>
+</ul>
