@@ -71,6 +71,7 @@ class MilestonesController < ApplicationController
 
       if params[:commit] == "Update"
         @milestone.descriptive_name = params[:milestone][:descriptive_name]
+        @milestone.estimated_start_date = params[:milestone][:estimated_start_date]
         @milestone.estimated_completion_date = params[:milestone][:estimated_completion_date]
 
         if @milestone.update(@milestones.to_h)
