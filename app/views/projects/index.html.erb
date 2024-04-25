@@ -16,10 +16,10 @@
 
 <div class="container text-center">
     <% if project_data.status == "Good" %>
-        <div class="alert bg-warning" role="alert">
+        <div class="alert bg-success" role="alert">
 
     <% elsif project_data.status == "OK" %>
-        <div class="alert bg-secondary" role="alert">
+        <div class="alert bg-warning" role="alert">
 
     <% elsif project_data.status == "At Risk" %>
         <div class="alert bg-danger" role="alert">
