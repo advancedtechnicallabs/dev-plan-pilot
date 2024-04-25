@@ -4,6 +4,7 @@
 #
 #  id                        :integer          not null, primary key
 #  budget_amount             :decimal(, )
+#  budget_amount_used        :decimal(, )
 #  estimated_completion_date :date
 #  project_description       :text
 #  project_name              :string

@@ -6,6 +6,7 @@
 #  descriptive_name          :text
 #  estimated_completion_date :date
 #  estimated_start_date      :date
+#  milestone_cost            :decimal(, )
 #  row_order                 :integer
 #  status                    :text
 #  created_at                :datetime         not null

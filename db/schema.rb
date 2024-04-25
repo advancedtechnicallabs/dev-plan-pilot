@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_04_24_225434) do
+ActiveRecord::Schema[7.0].define(version: 2024_04_25_095651) do
   create_table "issues", force: :cascade do |t|
     t.text "description"
     t.integer "task_id"
@@ -37,6 +37,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_24_225434) do
     t.datetime "updated_at", null: false
     t.integer "row_order"
     t.date "estimated_start_date"
+    t.decimal "milestone_cost"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -48,6 +49,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_24_225434) do
     t.text "skillset_requirements"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "budget_amount_used"
   end
 
   create_table "user_stories", force: :cascade do |t|

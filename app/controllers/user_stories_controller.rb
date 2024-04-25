@@ -10,6 +10,17 @@ class UserStoriesController < ApplicationController
     @user_story = UserStory.find(params[:id])
     @user_story.update(row_order_position: params[:row_order_position], milestone_id: params[:milestone_id])
     head :no_content
+
+    milestone_rec = Milestone.find(@user_story.milestone_id)
+    cost = milestone_rec.cost
+    
+    membership_rec = Membership.find(@user_story.membership_id)
+    user_rec = User.find(membership_rec.user_id)
+    user_price = user_rec.price_per_hour
+
+    cost = cost + user_price
+    
+    milestone_rec.update(milestone_cost: cost)
   end
 
   # GET /user_stories/1 or /user_stories/1.json
