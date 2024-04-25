@@ -15,7 +15,19 @@
 
 
 <div class="container text-center">
-    <div class="alert alert-success" role="alert">
+    <% if project_data.status == "Good" %>
+        <div class="alert bg-warning" role="alert">
+
+    <% elsif project_data.status == "OK" %>
+        <div class="alert bg-secondary" role="alert">
+
+    <% elsif project_data.status == "At Risk" %>
+        <div class="alert bg-danger" role="alert">
+
+    <% else %>
+        <div class="alert alert-secondary">
+    <% end %>
+
         <div class="container text-center">
             <div class="row">
 
@@ -28,7 +40,7 @@
 
                     <div class="row">
                         <div class="col">
-                            <h3><%= link_to "#{project_data.project_name}", controller: "projects", action: "show", id: project_data.id %></h3>   
+                            <h3>Project : <%= link_to "#{project_data.project_name}", controller: "projects", action: "show", id: project_data.id, class: "link-dark" %></h3>   
                         </div>
                     </div>
 
@@ -49,16 +61,8 @@
                         </div>
 
                         <div class="row">
-                            <div class="col" style="text-align: left">
-                                <h5>Milestones Completed: 99</h5>
-                            </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col" style="text-align: left">
-                                <h5>Unresolved Issues: 99</h5>
-                            </div>
-                        </div>
                     </div>
                 </div>
 

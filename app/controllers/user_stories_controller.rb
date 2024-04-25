@@ -2,25 +2,78 @@ class UserStoriesController < ApplicationController
   before_action :set_user_story, only: %i[ show edit update destroy ]
 
   # GET /user_stories or /user_stories.json
+
+  def update_cost(id)
+
+    milestone_rec = Milestone.find(@user_story.milestone_id)
+    found_project_id = milestone_rec.project_id
+
+    list_of_milestones = Milestone.where(project_id: found_project_id)
+
+    total_project_cost = 0
+    
+    list_of_milestones.each do |milestone_rec|
+
+        milestone_rec.milestone_cost = 0.00
+
+        associated_user_stories = UserStory.where(milestone_id: milestone_rec.id)
+        
+        cost = 0
+        num_hours = 0
+        associated_user_stories.each do |user_story_rec|
+          membership_rec = Membership.find(user_story_rec.membership_id)
+          user_rec = User.find(membership_rec.user_id)
+
+          user_price = user_rec.price_per_hour
+          num_hours = ((milestone_rec.estimated_completion_date - milestone_rec.estimated_start_date).to_i)*8
+
+          cost = cost + user_price 
+
+        end # Of inner loop.
+        
+      cost_with_hours = cost*num_hours
+      milestone_rec.update(milestone_cost: cost_with_hours)  
+      
+      total_project_cost = total_project_cost + cost_with_hours
+
+      project_rec = Project.find(found_project_id)
+
+      project_rec.update(budget_amount_used: total_project_cost)
+
+      project_status = "Good"
+      
+      percentage_budget_used = (project_rec.budget_amount_used / project_rec.budget_amount) * 100
+
+      if percentage_budget_used >= 50.0 && percentage_budget_used < 75.0
+        project_status = "OK"
+      
+      elsif percentage_budget_used >= 75.0
+        project_status = "At Risk"
+
+      end
+      puts "project_status ->>>> #{project_status}"
+
+      project_rec.update(status: project_status)
+
+      
+    end
+
+  end
+
+
   def index
     @user_stories = UserStory.all
   end
+
 
   def sort
     @user_story = UserStory.find(params[:id])
     @user_story.update(row_order_position: params[:row_order_position], milestone_id: params[:milestone_id])
     head :no_content
 
-    milestone_rec = Milestone.find(@user_story.milestone_id)
-    cost = milestone_rec.cost
-    
-    membership_rec = Membership.find(@user_story.membership_id)
-    user_rec = User.find(membership_rec.user_id)
-    user_price = user_rec.price_per_hour
+    self.update_cost(@user_story.milestone_id)
 
-    cost = cost + user_price
-    
-    milestone_rec.update(milestone_cost: cost)
+  
   end
 
   # GET /user_stories/1 or /user_stories/1.json
@@ -38,6 +91,8 @@ class UserStoriesController < ApplicationController
     @user_story.save
 
     @element_dom = params[:obj_model_id]
+
+    self.update_cost(@user_story.milestone_id)
 
     respond_to do |format|
       format.html
@@ -85,8 +140,6 @@ class UserStoriesController < ApplicationController
         matching_milestone = Milestone.find(@user_story.milestone_id)
 
         selected_user_id = parsed_user_selection["user_id"].to_i
-
-
 
         proj_id = matching_milestone.project_id
 

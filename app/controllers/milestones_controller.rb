@@ -26,6 +26,7 @@ class MilestonesController < ApplicationController
     @milestone.descriptive_name = "Untitled Sprint/Milestone"
     @milestone.project_id = params[:proj_id]
     @milestone.row_order = params[:rank_order].to_i + 1
+    @milestone.milestone_cost = 0.00
     @milestone.save
 
     @element_dom = params[:obj_model_id]
