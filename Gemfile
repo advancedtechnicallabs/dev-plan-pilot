@@ -80,7 +80,7 @@ gem "dotenv-rails"
 gem "faker"
 gem "htmlbeautifier"
 gem "http"
-gem "sqlite3", "~> 1.4"
+gem "pg", "~> 1.1"
 gem "table_print"
 
 group :development do
